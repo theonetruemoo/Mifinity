@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <title>Login</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+
+        <p:panel id = "loginPanel">
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputText value="User Name: " />
+                <h:inputText id="userName" value="#{userController.userDTO.userName}" />
+
+                <h:outputText value="password: " />
+                <h:inputSecret id="password" value="#{userController.userDTO.password}" />
+
+                <p:commandButton id="login" value="Login"
+                                 action="#{userController.login()}" />
+            </h:panelGrid>
+        </p:panel>
+
+        <p:panel id="registerPanel" header="register" toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="regPanel" style="margin-bottom:20px" collapsed="true">
+            <p:panel>
+                <h:panelGrid columns="2" cellpadding="4">
+                    <h:outputText value="User Name: " />
+                    <h:inputText id="regUserName" value="#{userController.regUserName}" />
+
+                    <h:outputText value="password: " />
+                    <h:inputSecret id="regPassword" value="#{userController.regPassword}" />
+
+                    <h:outputText value="password: " />
+                    <h:inputSecret id="regPasswordConfirm" value="#{userController.confirmRegPassword}" />
+
+                    <p:commandButton id="register" value="Register"
+                                     action="#{userController.register()}"
+                                     update="loginPanel"/>
+
+
+
+
+                </h:panelGrid>
+            </p:panel>
+
+        </p:panel>
+
+
+    </h:form>
+</h:body>
+</html>

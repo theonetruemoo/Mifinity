@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Card Details</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+       <p:panel header="Card Details">
+           <h:panelGrid columns="3" cellpadding="4">
+               <h:panelGrid columns="2" cellpadding="4">
+                   <h:outputText value="Card Number: " />
+                   <p:inputText id="cardNumber" value="#{cardController.cardDetailDTO.cardNumber}"/>
+                   <h:outputText value="Name: " />
+                   <p:inputText value="#{cardController.cardDetailDTO.name}"/>
+                   <h:outputText value="Expiry Date: " />
+                   <p:inputMask id="expDate" value="#{cardController.cardDetailDTO.expDateString}" mask="99/99"/>
+                   <p:watermark for="expDate" value="YY/MM" id="watermark" />
+
+                   <p:commandButton id="save" value="Save"
+                                    action="#{cardController.save()}"
+                   update="tablePanel"/>
+               </h:panelGrid>
+
+               <p:spacer width="250" height="10" />
+
+               <h:panelGrid columns="2" cellpadding="4">
+                   <h:outputText value="Card Number For Search: " />
+                   <p:inputText id="cardNumberSearch" value="#{cardController.searchString}"/>
+
+                   <p:commandButton id="search" value="Search"
+                                    action="#{cardController.search()}"
+                                    update="tablePanel"/>
+
+               </h:panelGrid>
+           </h:panelGrid>
+
+        </p:panel>
+        <p:panel id = "tablePanel">
+            <p:dataTable var="card" value="#{cardController.cardDetailDTOS}" widgetVar="carsTable" >
+
+                <p:column  headerText="Card Number" >
+                    <h:outputText value="#{card.cardNumber}" />
+                </p:column>
+                <p:column  headerText="Name" >
+                    <h:outputText value="#{card.name}" />
+                </p:column>
+                <p:column  headerText="Expiry Date" >
+                    <h:outputText value="#{card.expDateString}" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+
+
+
+
+        <p:panel>
+
+
+
+        </p:panel>
+
+
+    </h:form>
+</h:body>
+</html>
